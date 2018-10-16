@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  <style>
+			body {
+   	 			background-color: lightblue;
+			}
+		
+	#demo{
+			text-align: right;
+			color: midnightblue;
+			padding: 18px;
+			font-weight : bold;
+			font-size: 18px;
+		}
+	
+	</style>
+
+	
+	
+</head>
+
+<body>
+	<div class="container">
+ <p id="demo" ></p>  
+  <br>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" >
+    <li class=" active">
+      <a  href="#list">List View</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " href="displayFlights.html">Matrix View</a>
+    </li>
+    
+  </ul>
+	<div class="tab-content">
+    	<div id="list" class="container tab-pane active"><br>
+      		<h3>gogo~</h3>
+      		<p>Hello World </p>
+    	</div>
+	</div>
+ 
+</div>
+	<script>
+	var myVar = setInterval(myTimer, 1000);
+
+		function myTimer() {
+    		var d = new Date();
+    		document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+		}
+		
+	
+	
+	</script>
+	
+	
+</body>
+</html>
