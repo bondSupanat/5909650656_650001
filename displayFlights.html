@@ -17,7 +17,7 @@
   
 			}
 		th{
-			color: black;
+			color: whitesmoke;
     		background-color: cadetblue;
     		padding: 15px;
     		text-align: left;
@@ -34,7 +34,13 @@
 			font-weight : bold;
 			font-size: 18px;
 		}
-	
+	#demo2{
+			text-align: left;
+			color: midnightblue;
+			padding: 18px;
+
+			font-size: 14px;
+		}
 	
 	
 	</style>
@@ -45,7 +51,10 @@
 
 <body>
 	<div class="container">
-<p id="demo" ></p>  
+	<div class="row">
+			<div class="col-sm-6 " id="demo2"><a href="searchFlights.html">Search Fights</a> </div>
+		 	<div class="col-sm-6" id="demo" ></div><br>	 
+		</div> 
   <br>
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" >
@@ -81,9 +90,9 @@
 		
 		
 		<div align="center"><ul class="pagination" >
-    		<li id="left_btn"><a href="#" onclick="myPagination_left()"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+    		<li class="disabled" id="left_btn"><a href="#" onclick="myPagination_left()"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
     		<li class="disabled"><a href="#" id="showPage" >1</a></li>
-    		<li id="right_btn"><a href="#" onclick="myPagination_right()"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+    		<li class="" id="right_btn"><a href="#" onclick="myPagination_right()"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
   		</ul></div>
 		
 		
@@ -99,7 +108,7 @@
 		
 		
 		
-		var arr = JSON.parse($.getJSON({'url': "https://api.myjson.com/bins/a4k0s", 'async': false}).responseText);
+		var arr = JSON.parse($.getJSON({'url': "https://api.myjson.com/bins/118se0", 'async': false}).responseText);
 
 		var arrPage = Math.ceil(arr.length/3)+1;
 		
@@ -130,7 +139,13 @@
 				
 				}else if(pageNow == j){
 					document.getElementById("showPage").innerHTML = j-1;
-					
+					if(j-1 == 1){
+						document.getElementById("left_btn").className = "disabled";
+							document.getElementById("right_btn").className = "";
+					}else{
+						document.getElementById("right_btn").className = "";
+						document.getElementById("left_btn").className = "";
+					}
 					
 					if(pageNow == arrPage-1 && arr.length%3 != 0){
 						//if(arr.length%3 == 0)
@@ -194,6 +209,14 @@
 				
 				}else if(pageNow == j){
 					document.getElementById("showPage").innerHTML = j+1;
+					console.log((j+2)+" "+(arrPage)+" "+(j+1 == arrPage-1));
+					if(j+1 == arrPage-1){
+						document.getElementById("right_btn").className = "disabled";
+						document.getElementById("left_btn").className = "";
+					}else{
+						document.getElementById("right_btn").className = "";
+						document.getElementById("left_btn").className = "";
+					}
 				
 					for(var i=0 ; i<document.getElementById("showDisplay").getElementsByTagName("tr").length+1;i++){
 						document.getElementById("showDisplay").deleteRow(1);
