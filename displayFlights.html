@@ -34,13 +34,7 @@
 			font-weight : bold;
 			font-size: 18px;
 		}
-	#demo2{
-			text-align: left;
-			color: midnightblue;
-			padding: 18px;
-
-			font-size: 14px;
-		}
+	
 	
 	
 	</style>
@@ -51,10 +45,7 @@
 
 <body>
 	<div class="container">
-	<div class="row">
-			<div class="col-sm-6 " id="demo2"><a href="searchFlights.html">Search Fights</a> </div>
-		 	<div class="col-sm-6" id="demo" ></div><br>	 
-		</div> 
+<p id="demo" ></p>  
   <br>
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" >
@@ -70,7 +61,7 @@
 	<div class="tab-content">
     	<div id="display" class="container tab-pane active"><br>
       		
-			<h5 id="showNum1"> <span class="badge badge-secondary">1</span>  of 3 shown-one way  </h5>
+			<h5 id="showNum1"> <span class="badge badgebadge-light">1</span>  of 3 shown-one way  </h5>
       		<table id = "showDisplay" class="table" >
     			<thead>
       				<tr>
@@ -90,9 +81,9 @@
 		
 		
 		<div align="center"><ul class="pagination" >
-    		<li class="disabled" id="left_btn"><a href="#" onclick="myPagination_left()"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+    		<li id="left_btn" class="disabled"><a href="#" onclick="myPagination_left()"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
     		<li class="disabled"><a href="#" id="showPage" >1</a></li>
-    		<li class="" id="right_btn"><a href="#" onclick="myPagination_right()"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+    		<li id="right_btn"><a href="#" onclick="myPagination_right()"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
   		</ul></div>
 		
 		
@@ -108,7 +99,9 @@
 		
 		
 		
-		var arr = JSON.parse($.getJSON({'url': "https://api.myjson.com/bins/118se0", 'async': false}).responseText);
+		var arr = JSON.parse($.getJSON({'url': "https://api.myjson.com/bins/mfb54", 'async': false}).responseText); //a4k0s
+		//https://api.myjson.com/bins/mfb54
+		//https://api.myjson.com/bins/19pcw8
 
 		var arrPage = Math.ceil(arr.length/3)+1;
 		
@@ -127,7 +120,7 @@
 		}
 		
 		
-		document.getElementById("showNum1").innerHTML = "<span class=\"badge badge-secondary\">"+i+"</span>  of "+arr.length+" shown-one way ";
+		document.getElementById("showNum1").innerHTML = "<span class=\"badge badge-light\" style=\"color:green; background-color: White; \">"+i+"</span>  of "+arr.length+" shown-one way ";
 		
 		
 		function myPagination_left(){
@@ -139,9 +132,11 @@
 				
 				}else if(pageNow == j){
 					document.getElementById("showPage").innerHTML = j-1;
-					if(j-1 == 1){
+					
+						if(j-1 == 1){
+						document.getElementById("right_btn").className = "";
 						document.getElementById("left_btn").className = "disabled";
-							document.getElementById("right_btn").className = "";
+					//	console.log("aaaa");
 					}else{
 						document.getElementById("right_btn").className = "";
 						document.getElementById("left_btn").className = "";
@@ -169,11 +164,11 @@
 							if(j+1 == arrPage){
 								if(arr.length%3==0){
 						   			a -= 3+3;
-									//console.log(a);
+									console.log(a);
 									break;
 								}else{
 									a -= (arr.length%3)+3;
-									//console.log(a);
+									console.log(a);
 									break;
 								}
 
@@ -182,8 +177,15 @@
 								a-=3;
 								if(a < 0){
 									a=0;
+									break;
 								}
+								
 								console.log(a);
+								if(a==4 && (j-1)==2 &&arr.length==10){
+									a =a-1;
+									break;
+								}
+								
 							}
 							//console.log(a);
 							
@@ -191,8 +193,7 @@
 					
 					}
 					
-					
-			document.getElementById("showNum1").innerHTML = "<span class=\"badge badge-secondary\">"+(a+3)+"</span>  of "+arr.length+" shown-one way ";
+			document.getElementById("showNum1").innerHTML = "<span class=\"badge badge-light\" style=\"color:green; background-color: White; \">"+(a+3)+"</span>  of "+arr.length+" shown-one way ";
 					for(var i =a ; i<a+3 ; i++){
 						myFunction2(i);
 					}
@@ -209,10 +210,11 @@
 				
 				}else if(pageNow == j){
 					document.getElementById("showPage").innerHTML = j+1;
-					console.log((j+2)+" "+(arrPage)+" "+(j+1 == arrPage-1));
+					
 					if(j+1 == arrPage-1){
 						document.getElementById("right_btn").className = "disabled";
 						document.getElementById("left_btn").className = "";
+					//	console.log("aaaa");
 					}else{
 						document.getElementById("right_btn").className = "";
 						document.getElementById("left_btn").className = "";
@@ -240,7 +242,7 @@
 					}else{a2=a+3;}
 					
 					
-			document.getElementById("showNum1").innerHTML = "<span class=\"badge badge-secondary\">"+(a2)+"</span>  of "+arr.length+" shown-one way ";
+			document.getElementById("showNum1").innerHTML = "<span class=\"badge badge-light\" style=\"color:green; background-color: White; \">"+(a2)+"</span>  of "+arr.length+" shown-one way ";
 					for(var i =a ; i<a2 ; i++){
 						myFunction2(i);
 					}
