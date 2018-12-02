@@ -49,9 +49,20 @@
 
 	<div class="row">
 		<div class="col-sm-8 " > </div>
-		 <div class="col-sm-4" style = "text-align: right;"><input type="radio" id="one"> One way </div><br>
+		 <div class="col-sm-4" style = "text-align: right;"> 
+			 <input type="radio" id="one" name="contact" value="one" checked>
+   			 	<label for="one" >One way</label></div><br>
 		<div class="col-sm-8" > </div>
-		<div class="col-sm-4" style = "text-align: right;"> <input type="radio" id="round"> Round trip  </div><br>
+		<div class="col-sm-4" style = "text-align: right;">
+			<input type="radio" id="round" name="contact" value="round">
+    			<label for="round">Round trip </label> </div><br>
+		
+		
+
+			 
+	
+
+
 	</div>
 	
 		
@@ -138,12 +149,28 @@
 		
 	</div>
 	
-	<a href="displayFlights.html"><button type="button" class="btn btn-outline-success active">Submit</button></a>
+	<button type="button" id="btsS" class="btn btn-outline-success active" onclick = "myf()">Submit</button>
 	
 	
 </div>	
 	
 	<script>
+		
+		 function myf(){
+			
+			console.log("aaa");
+			 	console.log($("input[name=contact]").filter(":checked").val());
+			 window.location="displayFlights.html?trip=" + $("input[name=contact]").filter(":checked").val();
+		};
+			//console.log("aaa");
+			console.log($("input[name=contact]").filter(":checked").val());
+			
+			
+	
+		
+		
+		
+		
 	var myVar = setInterval(myTimer, 1000);
 
 		function myTimer() {
