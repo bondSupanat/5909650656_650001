@@ -41,13 +41,15 @@
 
 	
 	
+	
+	
 </head>
 
 <body>
 	
 	
 	<script>
-		
+		console.log(window.location.href);
 		
 		function findGetParameter(parameterName) {
     		var result = null,
@@ -61,8 +63,10 @@
         });
     return result;
 }
-var data = findGetParameter('trip');
-		console.log(data);
+var trip = findGetParameter('trip');
+		
+	console.log(trip);
+		
 		//	window.location.href;
 		
 	</script>
@@ -108,6 +112,10 @@ var data = findGetParameter('trip');
     		<li class="disabled"><a href="#" id="showPage" >1</a></li>
     		<li id="right_btn"><a href="#" onclick="myPagination_right()"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
   		</ul></div>
+		
+		<div id="spoiler" style="display:none">
+	
+</div>
 		
 		
  
@@ -296,7 +304,41 @@ var data = findGetParameter('trip');
 			var i_details = document.createElement("a");
 			var t = document.createTextNode("Details");
 			i_details.appendChild(t);
-			i_details.href = "#";
+			
+			i_details.onclick = function(){
+				console.log("test");
+				if(document.getElementById('spoiler') .style.display=='none') {
+					document.getElementById('spoiler') .style.display=''
+					
+					if(trip=="one"){
+						document.getElementById('spoiler').innerHTML = 
+						"<h3>OUTBOUND<\/h3>Oct 10,2018 <br>"+  arr[count].Takeoff+" <br>"+ arr[count].Landing+" <br>Stops "+arr[count].Stops+" Duration "+arr[count].Duration+" hr<br><br> "
+						+"<button type=\"button\" id=\"select\" class=\"btn btn-outline-success active\">Select</button>"
+					
+						
+					}else{
+						
+						document.getElementById('spoiler').innerHTML = 
+						"<h3>OUTBOUND<\/h3>Oct 10,2018 <br>"+  arr[count].Takeoff+" <br>"+ arr[count].Landing+" <br>Stops "+arr[count].Stops+" Duration "+arr[count].Duration+" hr<br><br> "
+						
+						+"<h3>INBOUND<\/h3>Oct 10,2018 <br>"+  arr[count].Landing+" <br>"+ arr[count].Takeoff+" <br>Stops "+arr[count].Stops+" Duration "+arr[count].Duration+" hr<br><br> "
+						+"<button type=\"button\" id=\"select\" class=\"btn btn-outline-success active\">Select</button>"
+					
+						
+						
+						
+						
+					}
+					document.getElementById("select").onclick= function(){
+							window.location="payment.html?json=mfb54&count="+count;
+						};
+					
+		
+				}
+				else{
+					document.getElementById('spoiler') .style.display='none'
+				}
+			};
 			
 			var h4 = document.createElement("h4");
 			var t2 = document.createTextNode("NEW CELL1");

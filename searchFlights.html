@@ -156,11 +156,17 @@
 	
 	<script>
 		
+	
+		
+		
+		
 		 function myf(){
-			
+			//$.get('http://localhost:8080/data', {}, function(data){
+			//	console.log(data)
+			//});
 			console.log("aaa");
 			 	console.log($("input[name=contact]").filter(":checked").val());
-			 window.location="displayFlights.html?trip=" + $("input[name=contact]").filter(":checked").val();
+			 	window.location="displayFlights.html?trip=" + $("input[name=contact]").filter(":checked").val();
 		};
 			//console.log("aaa");
 			console.log($("input[name=contact]").filter(":checked").val());

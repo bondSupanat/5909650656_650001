@@ -2,6 +2,10 @@ var http = require('http');
 var url = require('url');
 var fs = require('fs');
 
+
+
+
+
 http.createServer(function (req, res) {
   var q = url.parse(req.url, true);
   var filename = "." + q.pathname;
@@ -11,7 +15,19 @@ http.createServer(function (req, res) {
       return res.end("404 Not Found");
     }  
     res.writeHead(200, {'Content-Type': 'text/html'});
+	  console.log(data);
     res.write(data);
+	  // res.send('hello world'); 
     return res.end();
   });
+	
+
+
+	
+	
 }).listen(8080);
+
+
+
+
+

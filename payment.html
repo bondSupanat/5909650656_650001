@@ -1,0 +1,281 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Payment</title>
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style>
+			body {
+   	 			
+				background: linear-gradient(to bottom right, skyblue, pink) no-repeat center fixed; 
+				
+  
+			}
+	</style>
+	
+</head>
+	
+	
+	
+<body>
+	<script>
+		console.log(window.location.href);
+		
+		function findGetParameter(parameterName) {
+    		var result = null,
+				tmp = [];
+    		location.search
+				.substr(1)
+				.split("&")
+				.forEach(function (item) {
+				tmp = item.split("=");
+				if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+        });
+    return result;
+}
+var json = findGetParameter('json');	
+	console.log(json);
+		
+		var arr = JSON.parse($.getJSON({'url': "https://api.myjson.com/bins/"+json, 'async': false}).responseText); 
+		
+var count = findGetParameter('count');
+		
+	console.log(count);
+		console.log(arr[count]);
+		
+		//	window.location.href;
+		
+	</script>
+	
+	
+	<div class="container">
+		
+		<div class="row">
+		<div class="col-sm-8 " > 
+			<h2>Payment</h2>
+			<br><br>
+			
+			<form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
+				
+				<div class="col-xs-2">Title : <input type="text" name="title" class="form-control"></div>
+				<div class="col-xs-3">First name : <input type="text" name="firstname"class="form-control"></div>
+  				<div class="col-xs-3">Last name : <input type="text" name="lastname" class="form-control"></div>
+				
+				
+				
+				
+				
+				
+				
+				<div class="col-xs-4">birth date :<input name="birthdate" type="date" class="form-control"></div>
+				
+				<br><br><br>
+				
+				<div class="col-xs-4">Passport No. : <input type="text" name="passport" class="form-control"></div>
+  				<div class="col-xs-4">	Country : <input type="text" name="country" class="form-control"></div>
+				<div class="col-xs-4">Passport Expiration Date : <input name="passportdate" type="date" class="form-control"></div>
+	
+				<br><br><br><br>
+				<div class="col-xs-5"></div><div> <button type="button" id = "next1" value="Submit" class="btn btn-success">Next</button>
+				</div>
+				
+			</form>
+			
+			
+			<div  class="row" >
+	
+			<div class="col-sm-8 " id="spoiler" style="display:none">
+			
+   				<br><br>  
+     		<div class="checkbox">
+ 				<h4> <label><input type="checkbox" id = "ti"value="travali" >Travel Insurance</label></h4> 
+				ประกันอุบัติเหตุและสุขภาพที่กำลังจะตายระหว่างเดินทาง<br>
+				1300 บาท
+			</div>
+				
+				<br>
+			<div class="checkbox">
+ 				<h4> <label><input type="checkbox" id = "bi" value="baggagei">Baggage Insurance</label></h4> 
+				ประกันกระเป๋าเดินทางหายไปจากโลก หรือ ล่าช้าจากเครื่องบินกำลังตก<br>
+				350 บาท
+			</div>
+				
+			
+				<div> 
+					<button type="button" id = "next2" class="btn btn-success">Next</button>
+				</div>
+			</div>
+			
+			
+			
+		
+		</div>
+			
+			
+			</div>
+			<div class="col-sm-4" id = "paybox"> 
+				
+			
+			</div>
+			
+
+	</div>
+		
+		
+		
+		
+	
+		
+		
+		
+	
+			
+	
+	
+	
+	</div>		
+	<script>
+		//console.log(document.forms["myForm"]["title"].value);
+		
+		var passenger ;
+		var fight = arr[count];
+		var total;
+		
+	document.getElementById("paybox").innerHTML = "<br><br><br>"
+				+"<h4>Peyment Information</h4> "
+				+"Flight 25,670 บาท <br>"
+				+"Tax 1,000 บาท<br>"
+				+"Services 0 บาท<br>"
+				+"<br>"
+				+"Discount 0 บาท<br>"
+				+"<br>"
+				+"Total 26670 บาท <br>"
+		
+
+		
+		
+	document.getElementById('next1').onclick = function(){
+		//console.log("tesss");
+		
+		//document.forms["myForm"]["title"].value;
+		passenger = {
+			'title' :	document.forms["myForm"]["title"].value,
+			'firstname' :document.forms["myForm"]["firstname"].value,
+			'lastname':	document.forms["myForm"]["lastname"].value,
+				
+			'birthdate' :	document.forms["myForm"]["birthdate"].value,
+			'passport' :	document.forms["myForm"]["passport"].value,
+			'country' :	document.forms["myForm"]["country"].value,
+			'passportdate' :	document.forms["myForm"]["passportdate"].value
+			
+		}
+				
+			
+			
+		
+		
+		if(document.getElementById('spoiler') .style.display=='none') {
+					document.getElementById('next1') .style.display='none'
+					document.getElementById('spoiler') .style.display=''
+				
+				}
+				else{
+					document.getElementById('spoiler') .style.display='none'
+				}
+	}
+	document.getElementById('next2').onclick = function(){
+		
+		console.log(arr[count]);
+		console.log(passenger);
+		console.log(total);
+		
+	}
+
+		
+	
+	function showpay(){
+		if(document.getElementById("ti").checked==true && document.getElementById("bi").checked==true){
+			document.getElementById("paybox").innerHTML = "<br><br><br>"
+				+"<h4>Peyment Information</h4> "
+				+"Flight 25,670 บาท <br>"
+				+"Tax 1,000 บาท<br>"
+				+"Services 1650 บาท<br>"
+				+"- Travel Insurance 1,300 บาท<br>"
+				+"- Baggage Insurance 350 บาท<br>"
+				+"<br>"
+				+"Discount -10% "+((25670+1000+1300+350)*0.9)+" บาท<br>"
+				+"<br>"
+				+"Total "+(25670+1000+1300+350-650)+" บาท <br>"
+			
+			total = (25670+1000+1300+350-650);
+		}
+		else if(document.getElementById("ti").checked==true && document.getElementById("bi").checked==false){
+			document.getElementById("paybox").innerHTML = "<br><br><br>"
+				+"<h4>Peyment Information</h4> "
+				+"Flight 25,670 บาท <br>"
+				+"Tax 1,000 บาท<br>"
+				+"Services 1300 บาท<br>"
+				+"- Travel Insurance 1,300 บาท<br>"
+				+"<br>"
+				+"Discount 0 บาท<br>"
+				+"<br>"
+				+"Total "+(25670+1000+1300)+" บาท <br>"
+			
+			total = (25670+1000+1300);
+		}
+		else if(document.getElementById("ti").checked==false && document.getElementById("bi").checked==true){
+			document.getElementById("paybox").innerHTML = "<br><br><br>"
+				+"<h4>Peyment Information</h4> "
+				+"Flight 25,670 บาท <br>"
+				+"Tax 1,000 บาท<br>"
+				+"Services 350 บาท<br>"
+				
+				+"- Baggage Insurance 350 บาท<br>"
+				+"<br>"
+				+"Discount 0 บาท<br>"
+				+"<br>"
+				+"Total "+(25670+1000+350)+" บาท <br>"
+			
+			total = (25670+1000+350);
+		}
+		else if(document.getElementById("ti").checked==false && document.getElementById("bi").checked==false){
+			document.getElementById("paybox").innerHTML = "<br><br><br>"
+				+"<h4>Peyment Information</h4> "
+				+"Flight 25,670 บาท <br>"
+				+"Tax 1,000 บาท<br>"
+				+"Services 0 บาท<br>"
+				
+				+"<br>"
+				+"Discount 0 บาท<br>"
+				+"<br>"
+				+"Total "+(25670+1000)+" บาท <br>"
+			total = (25670+1000);
+		}
+	}
+	
+	
+	document.getElementById("ti").onclick = function(){
+			showpay();
+		  console.log(document.getElementById("ti").checked);
+		
+		
+		
+		
+	}
+	
+		document.getElementById("bi").onclick = function(){
+	showpay();
+		console.log(document.getElementById("bi").value);
+		
+	}
+	
+	
+	</script>
+	
+	
+	
+</body>
+</html>
